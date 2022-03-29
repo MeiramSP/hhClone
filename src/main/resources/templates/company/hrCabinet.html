@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<title>Кабинет HR</title>
+	<div th:replace="fragments :: header-css"/>
+	
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</head>
+<body>
+	<div th:replace = "fragments :: mynavbar"/> 
+	<br/><br/>	
+	   	
+	<div class="container">
+	   <h2 th:text = ${company.name}></h2>
+       <p th:text = ${hr_id}></p>
+       
+       <button class="btn btn-success nBtn">Новая вакансия</button>
+             
+	   <div class="card">
+	        <div class="card-block"> 
+			    <table class="table table-hover">
+			        <thead>
+			            <tr>
+			                <th>ID</th>
+			                <th>Заголовок</th>
+			                <th>Описание</th>     
+			                <th>Заработная плата</th>           
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr th:each="vacancy : ${company.vacancies}">
+			                <td th:text="${vacancy.id}">Id</td>
+			                <td th:text="${vacancy.title}">title</td>
+			                <td th:text="${vacancy.describe}">describe</td>   
+			                <td th:text="${vacancy.salary}">salary</td>   
+			                <td><a th:href = "@{/vacancies/{id}(id=${vacancy.id})}" class="btn btn-primary eBtn">Редактировать</a></td>                                       
+			            </tr>
+			        </tbody>
+			    </table>
+		    </div> 
+	    </div>	           	
+	</div>
+
+
+	<div class="myForm">
+	
+		<form th:action="@{/companies/hrs/{id}/save/{company}(id=${hr_id}, company=${company.id})}" method="post">
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				
+				<div class="modal-dialog">
+				
+					<div class="modal-content">		
+													
+						<div class="modal-header">
+							<h5 class="modal-title" id="modelLabel"></h5>	
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+						</div>
+						
+						<div class="modal-body">  
+												
+							<div class="form-group">
+								<label for="id" class="form-control-label">ID:</label>
+								<input type="text" class="form-control" id="id" name="id" value ="" readonly/>
+							</div>	
+							
+							<div class="form-group">
+								<label for="title" class="form-control-label">Заголовок:</label>
+								<input type="text" class="form-control" id="title" name="title" value =""/>
+							</div>	
+							
+							<div class="form-group">
+								<label for="describe" class="form-control-label">Описание:</label>							
+								<textarea class="form-control" id="describe" name = "describe" rows="4"></textarea>
+							</div>	
+							
+							<div class="form-group">
+								<label for="salary" class="form-control-label">Заработная плата:</label>							
+								<input type="text" class="form-control" id="salary" name="salary" value =""/>
+							</div>
+							
+							<div class="form-check">
+							  <input class="form-check-input" type="checkbox" id="visible" name="visible">
+							  <label class="form-check-label" for="visible"> Активность резюме</label>
+							</div>
+																																															
+						</div>
+						
+						<div class="modal-footer">						
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>							
+							<input type="submit" class="btn btn-primary" value="Сохранить"/>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</form>
+		
+	</div>
+	
+</body>
+</html>

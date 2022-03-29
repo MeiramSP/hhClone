@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<title>Vacancies</title>
+	<div th:replace="fragments :: header-css"/>
+</head>
+<body>
+	
+	<div th:replace = "fragments :: mynavbar"/> 
+
+	<div align="center">
+	    <h3>Вакансии компании...</h3>
+	    <p th:text = ${company.name}></p>	 
+	       
+	    <br/><br/>	
+	        	
+			<div sec:authorize="hasRole('ROLE_HR')">
+				<h4>This content is only shown to hr managers.</h4>
+				<h4 th:text ="${#authentication.getPrincipal().getId()}"></h4>
+			</div>
+			
+			<table border="1" cellpadding="10">
+	        <thead>
+	            <tr>
+	                <th>Id</th>
+	                <th>title</th>
+	                <th>describe</th>     
+	                <th>Заработная плата</th>           
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="vacancy : ${company.vacancies}">
+	                <td th:text="${vacancy.id}">Id</td>
+	                <td th:text="${vacancy.title}">title</td>
+	                <td th:text="${vacancy.describe}">describe</td>   
+	                <td th:text="${vacancy.salary}">salary</td>                                          
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>   
+</body>
+</html>

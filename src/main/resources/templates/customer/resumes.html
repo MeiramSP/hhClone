@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<title th:text = ${customer_name}></title>
+	<div th:replace="fragments :: header-css"/>
+	
+</head>
+<body>
+	<div th:replace = "fragments :: mynavbar"/> 
+	<br/><br/>	
+	   	
+	<div class="container">
+       <button class="btn btn-success nBtn">Создать</button>
+       
+       <div class="card">
+	       <div class="card-block"> 
+		    <table class="table table-hover">
+		        <thead>
+		            <tr>		                
+		                <th>Заголовок</th>
+		                <th>Описание</th>     
+		                <th>Телефон</th>           
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="resume : ${resumes}">		                
+		                <td th:text="${resume.title}">title</td>
+		                <td th:text="${resume.describe}">describe</td>   
+		                <td th:text="${resume.phone}">phone</td>  		                	                                                       
+		            </tr>
+		        </tbody>
+		    </table>
+	    </div> 
+   </div>	
+	    
+	</div>
+</body>
+</html>
+

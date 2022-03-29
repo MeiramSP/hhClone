@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<title>Вакансии</title>
+	<div th:replace="fragments :: header-css" />
+	<script type="text/javascript" th:src="@{/js/customer.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments :: mynavbar" />
+	<br />
+	<br />
+
+	<div class="container">
+		<h3>Вакансии</h3>
+		<div class="card">
+			<div class="card-block">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Заголовок</th>
+							<th>Описание</th>
+							<th>Зарплата</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="vacancy : ${vacancies}">
+							<td th:text="${vacancy.id}" class="vacancyID">ID</td>
+							<td th:text="${vacancy.title}" class="title">title</td>
+							<td th:text="${vacancy.describe}">describe</td>
+							<td th:text="${vacancy.salary}">salary</td>
+							<td sec:authorize="hasRole('ROLE_USER')">								
+								<button class="btn btn-success oBtn" th:id="${vacancy.id}">Откликнуться</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="myForm">
+		<form th:action="@{/customers/{id}/response/create(id=${#authentication.getPrincipal().getId()})}" method="post">
+			<div class="modal fade" id="exampleModal" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+				<div class="modal-dialog">
+
+					<div class="modal-content">
+
+						<div class="modal-header">							
+							<h5 class="modal-title" id="modelLabel"></h5>							
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<div class="modal-body">
+						
+							<div class="form-group">
+								<label for="resumeId" class="form-control-label">Резюме:</label>
+								<select class="form-control" id="resumeId" name="resumeId">
+                                	<option th:each="resume : ${resumes}" th:value="${resume.id}" th:text="${resume.title}"></option>
+                                </select>                             
+							</div>
+							
+							<input type="hidden" id="vacancyId" name="vacancyId" value="">							
+
+							<div class="form-group">
+								<label for="message" class="form-control-label">Сопроводительное письмо:</label>
+								<textarea class="form-control" id="message" name="message" rows="4"></textarea>
+							</div>
+
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+							<input type="submit" class="btn btn-primary" value="Отправить" />
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>
