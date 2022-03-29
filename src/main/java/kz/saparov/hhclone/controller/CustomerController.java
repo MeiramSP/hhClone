@@ -44,18 +44,9 @@ public class CustomerController {
 	public String createResponse(@ModelAttribute("response") ReplyModel model,
 							     @PathVariable("id") Long userId) {	
 		
-		System.out.println(model);
+		System.out.println(model.getId());
 		
 		return "redirect:/customers/" + userId + "/resumes";
 	}
 	
-	/*
-	@ResponseBody
-	@GetMapping
-	public List<Resume> getResumesById(@PathVariable Long id) {
-		return resumeRepository.findByUserId(id);
-	}*/
-	
-	
-
 }
