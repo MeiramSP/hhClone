@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kz.saparov.hhclone.model.ReplyModel;
 import kz.saparov.hhclone.repository.ResumeRepository;
+import kz.saparov.hhclone.service.ReplyService;
 import kz.saparov.hhclone.service.VacancyService;
 
 @Controller
@@ -24,6 +25,9 @@ public class CustomerController {
 	
 	@Autowired
 	private VacancyService vacancyService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 
 	@GetMapping("/resumes")
@@ -43,9 +47,7 @@ public class CustomerController {
 	@PostMapping("/response/create")
 	public String createResponse(@ModelAttribute("response") ReplyModel model,
 							     @PathVariable("id") Long userId) {	
-		
-		System.out.println(model.getId());
-		
+		replyService.save(model, userId);
 		return "redirect:/customers/" + userId + "/resumes";
 	}
 	
