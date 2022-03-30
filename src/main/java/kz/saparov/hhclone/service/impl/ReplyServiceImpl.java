@@ -1,10 +1,11 @@
-package kz.saparov.hhclone.service;
+package kz.saparov.hhclone.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kz.saparov.hhclone.model.ReplyModel;
 import kz.saparov.hhclone.repository.ReplyRepository;
+import kz.saparov.hhclone.service.ReplyService;
 
 @Service
 public class ReplyServiceImpl implements ReplyService{

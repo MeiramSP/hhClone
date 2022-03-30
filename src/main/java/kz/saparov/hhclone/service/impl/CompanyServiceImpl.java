@@ -1,10 +1,11 @@
-package kz.saparov.hhclone.service;
+package kz.saparov.hhclone.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kz.saparov.hhclone.model.CompanyModel;
 import kz.saparov.hhclone.repository.CompanyRepository;
+import kz.saparov.hhclone.service.CompanyService;
 
 @Service
 public class CompanyServiceImpl implements CompanyService{
