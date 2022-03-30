@@ -19,7 +19,7 @@ public class VacancyServiceImpl implements VacancyService{
 	
 	@Override
 	public List<VacancyModel> getPersonalVacancyList(Long id) {		
-		return vacancyRepository.findAll().stream()
+		return vacancyRepository.findWithUserReplyes(id).stream()
 				.map(VacancyModel::toModel)
 				.collect(Collectors.toList());
 	}

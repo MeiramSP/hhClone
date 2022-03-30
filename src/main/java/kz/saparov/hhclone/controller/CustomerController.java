@@ -37,7 +37,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/vacancies")
-	public String showVacanyList(Model model, @PathVariable Long id) {		
+	public String showVacanyList(Model model, @PathVariable Long id) {	
 		model.addAttribute("vacancies", vacancyService.getPersonalVacancyList(id));
 		model.addAttribute("resumes", resumeRepository.findByUserId(id));
 		return "customer/vacanciesList";

@@ -15,6 +15,7 @@ public class VacancyModel {
 		model.setTitle(vacancy.getTitle());
 		model.setDescribe(vacancy.getDescribe());
 		model.setSalary(vacancy.getSalary());
+		model.setResponse(vacancy.getReplyes() == null || vacancy.getReplyes().isEmpty());
 		return model;
 	}
 	

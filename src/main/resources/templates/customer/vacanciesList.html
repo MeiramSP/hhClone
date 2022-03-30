@@ -31,9 +31,10 @@
 							<td th:text="${vacancy.title}" class="title">title</td>
 							<td th:text="${vacancy.describe}">describe</td>
 							<td th:text="${vacancy.salary}">salary</td>
-							<td sec:authorize="hasRole('ROLE_USER')">								
-								<button class="btn btn-success oBtn" th:id="${vacancy.id}">Откликнуться</button>
-							</td>
+							<td th:switch="${vacancy.response}">								
+								<button th:case="${true}" class="btn btn-success oBtn" th:id="${vacancy.id}">Откликнуться</button>
+								<button th:case="${false}" class="btn btn-secondary rBtn" th:id="${vacancy.id}">Отклик был</button>
+							</td>							
 						</tr>
 					</tbody>
 				</table>

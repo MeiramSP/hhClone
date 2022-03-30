@@ -13,5 +13,10 @@ $(document).ready(function() {
 		$('.myForm #exampleModal').modal();
 		
 	});
+	
+	$('.rBtn').on('click', function(){
+		alert('Вы не можете повторно отрпавить отклик');
+	});
+	
 });
 

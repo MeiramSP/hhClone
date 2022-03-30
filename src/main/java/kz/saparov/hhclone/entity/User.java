@@ -49,10 +49,10 @@ public class User {
     @JoinColumn(name = "company_id")
 	private Company company;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user")
 	private List<Resume> resumes = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user")
 	private List<Reply> replyes;
 	
 	public Long getId() {

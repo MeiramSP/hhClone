@@ -1,5 +1,7 @@
 package kz.saparov.hhclone.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,6 +38,9 @@ public class Vacancy {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="company_id", nullable=false)
 	private Company company;
+	
+	@OneToMany(mappedBy = "vacancy")
+	private List<Reply> replyes;
 
 	public Long getId() {
 		return id;
@@ -83,6 +89,14 @@ public class Vacancy {
 
 	public void setSalary(Long salary) {
 		this.salary = salary;
+	}
+	
+	public List<Reply> getReplyes() {
+		return replyes;
+	}
+
+	public void setReplyes(List<Reply> replyes) {
+		this.replyes = replyes;
 	}
 
 	@Override
