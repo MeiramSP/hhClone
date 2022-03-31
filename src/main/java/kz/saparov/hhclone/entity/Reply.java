@@ -2,6 +2,8 @@ package kz.saparov.hhclone.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +34,10 @@ public class Reply {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable=false)
 	private User user;
+	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "status", columnDefinition = "default 0")
+	private ReplyStatus status;
 	
 	public Long getId() {
 		return id;
@@ -71,5 +77,13 @@ public class Reply {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public ReplyStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ReplyStatus status) {
+		this.status = status;
 	}
 }

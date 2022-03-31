@@ -1,6 +1,7 @@
-package kz.saparov.hhclone.model;
+package kz.saparov.hhclone.dto.reply;
 
-public class ReplyModel {
+public class ReplyRequest {
+	
 	private Long id;
 	private Long resumeId;
 	private Long vacancyId;
@@ -29,10 +30,5 @@ public class ReplyModel {
 	}
 	public void setMessage(String message) {
 		this.message = message;
-	}
-	@Override
-	public String toString() {
-		return "ReplyModel [id=" + id + ", resumeId=" + resumeId + ", vacancyId=" + vacancyId + ", message=" + message
-				+ "]";
 	}
 }

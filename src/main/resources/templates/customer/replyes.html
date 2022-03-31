@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<title>Отклики и приглашения</title>
+	<div th:replace="fragments :: header-css"/>
+	
+</head>
+<body>
+	<div th:replace = "fragments :: mynavbar"/> 
+	<br/><br/>	
+	   	
+	<div class="container">
+       
+       <div class="card">
+	       <div class="card-block"> 
+		    <table class="table table-hover">
+		        <thead>
+		            <tr>		                
+		                <th>Статус</th>
+		                <th>Вакансия</th>     
+		                        
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="reply : ${replyes}">	
+		            	<td th:text="${reply.status}">Статус</td>      
+		                <td th:text="${reply.vacancyName}">Вакансия</td>		                		                	                                                       
+		            </tr>
+		        </tbody>
+		    </table>
+	    </div> 
+   </div>	
+	    
+	</div>
+</body>
+</html>
+
